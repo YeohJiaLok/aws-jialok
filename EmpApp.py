@@ -81,5 +81,15 @@ def AddEmp():
     return render_template('AddEmpOutput.html', name=emp_name)
 
 
+#Show payroll#
+@app.route("/diplayPayroll",methods=['POST'])
+def fetchdata():
+    cursor = db_conn.cursor()
+    cursor.execute("SELECT Payroll_Id, Employee_Name, Pay_Per_Hour, Total_Hour_Work,Ot_Time, Total_Ot_Time, Total_Salary FROM payroll")
+    i = cursor.fetchall()
+    return render_template('payroll.html', data=i)
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
