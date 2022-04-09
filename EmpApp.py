@@ -33,18 +33,18 @@ def about():
 
 @app.route("/addpayroll", methods=['POST'])
 def AddPayroll():
-    emp_id = request.form['emp_id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    pri_skill = request.form['pri_skill']
-    location = request.form['location']
-    emp_image_file = request.files['emp_image_file']
+    Employee_Name = request.form['Employee_Name']
+    Pay_Per_Hour = request.form['Pay_Per_Hour']
+    Total_Hour_Work = request.form['Total_Hour_Work']
+    Ot_Time = request.form['Ot_Time']
+    Total_Ot_Time = request.form['Total_Ot_Time']
+    Total_Salary = request.form['Total_Salary']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+    cursor.execute(insert_sql, (Employee_Name, Pay_Per_Hour, Total_Hour_Work, Ot_Time, Total_Ot_Time, Total_Salary))
     db_conn.commit()
-    emp_name = "" + first_name + " " + last_name
+   
     # Uplaod image file in S3 #
     
         
